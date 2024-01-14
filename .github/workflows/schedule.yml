@@ -2,19 +2,26 @@ name: Scheduled Python Script
 
 on:
   schedule:
-    - cron: '18 11 * * 0'  # 每周二9点UTC时间运行
+    - cron: '30 11 * * 0' # 每周二11时30分开始学习
+  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#providing-inputs
+  workflow_dispatch:
+    inputs:
+      unconditional-invoking:
+        description: '手动学习'
+        type: boolean
+        required: true
+        default: true
 
 jobs:
   run-python-script:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
       with:
-        python-version: '3.8'
+        python-version: '3.10'
 
     - name: Install dependencies
       run: |
