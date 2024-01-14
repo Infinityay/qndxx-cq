@@ -2,7 +2,7 @@ name: Scheduled Python Script
 
 on:
   schedule:
-    - cron: '30 11 * * 0' # 每周二11时30分开始学习
+    - cron: '30 3 * * 2' # 每周二11时30分开始学习
   # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#providing-inputs
   workflow_dispatch:
     inputs:
@@ -28,5 +28,13 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+    
     - name: Run Python script
       run: python qndxx.py
+
+    - name: Upload log file
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-files
+        path: qndxx.log
+
