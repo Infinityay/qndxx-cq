@@ -2,7 +2,7 @@ name: Scheduled Python Script
 
 on:
   schedule:
-    - cron: '15 19 * * 0'  # 每周二9点UTC时间运行
+    - cron: '18 11 * * 0'  # 每周二9点UTC时间运行
 
 jobs:
   run-python-script:
